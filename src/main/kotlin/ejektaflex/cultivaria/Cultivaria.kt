@@ -1,7 +1,8 @@
-package com.example.examplemod
+package ejektaflex.cultivaria
 
-import com.example.examplemod.util.allNeighbors
-import com.example.examplemod.util.toPretty
+import com.google.gson.GsonBuilder
+import ejektaflex.cultivaria.util.allNeighbors
+import ejektaflex.cultivaria.util.toPretty
 import net.alexwells.kottle.FMLKotlinModLoadingContext
 import net.minecraft.block.Block
 import net.minecraft.init.Blocks
@@ -27,24 +28,28 @@ import java.util.function.Consumer
 import java.util.stream.Collectors
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod("examplemod")
-object ExampleMod {
-    init {
-        // Register ourselves for server and other game events we are interested in
-        FMLKotlinModLoadingContext.get().modEventBus.addListener<FMLCommonSetupEvent> { setup(it) }
-        MinecraftForge.EVENT_BUS.register(this)
-    }
+@Mod("cultivaria")
+object Cultivaria {
+
+    val gson = GsonBuilder().setPrettyPrinting().create()
 
     val configFolder = Paths.get("config", "cultivaria").toFile().apply {
         mkdirs()
     }
 
-    val configMutations = File(configFolder, "mutations.json").apply {
-        createNewFile()
+    val mutationFile = File(configFolder, "mutations.json").apply {
+        if (!exists()) {
+            createNewFile()
+            writeText(gson.toJson(MutationRegistry.defaultData.content))
+        }
     }
 
-    fun setup(event: FMLCommonSetupEvent) {
-        LOGGER.info("Doing setup!")
+    init {
+        FMLKotlinModLoadingContext.get().modEventBus.addListener<FMLCommonSetupEvent> { setup(it) }
+        MinecraftForge.EVENT_BUS.register(this)
+    }
+
+    private fun setup(event: FMLCommonSetupEvent) {
         MutationRegistry.restore(MutationRegistry.defaultData.content)
     }
 

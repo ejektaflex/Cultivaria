@@ -1,4 +1,4 @@
-package com.example.examplemod.util
+package ejektaflex.cultivaria.util
 
 open class ValueRegistry<T : Any> : IValueRegistry<T> {
 

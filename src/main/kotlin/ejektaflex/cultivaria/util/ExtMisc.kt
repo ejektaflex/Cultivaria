@@ -1,4 +1,4 @@
-package com.example.examplemod.util
+package ejektaflex.cultivaria.util
 
 import net.minecraft.block.Block
 import net.minecraft.block.state.BlockState

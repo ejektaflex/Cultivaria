@@ -1,4 +1,4 @@
-package com.example.examplemod.util
+package ejektaflex.cultivaria.util
 
 interface IValueRegistry<T : Any> {
     val content: MutableList<T>

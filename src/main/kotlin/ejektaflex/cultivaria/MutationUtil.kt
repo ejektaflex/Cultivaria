@@ -1,9 +1,9 @@
-package com.example.examplemod
+package ejektaflex.cultivaria
 
-import com.example.examplemod.util.Mutation
-import com.example.examplemod.util.allNeighbors
-import com.example.examplemod.util.toBlock
-import com.example.examplemod.util.toPretty
+import ejektaflex.cultivaria.util.Mutation
+import ejektaflex.cultivaria.util.allNeighbors
+import ejektaflex.cultivaria.util.toBlock
+import ejektaflex.cultivaria.util.toPretty
 import net.minecraft.block.state.IBlockState
 import net.minecraft.init.Blocks
 import net.minecraft.util.math.BlockPos
